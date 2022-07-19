@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: frontend-podinfo
+    app.kubernetes.io/version: 6.1.6
   name: frontend-podinfo
 spec:
   progressDeadlineSeconds: 600
@@ -70,7 +71,7 @@ spec:
             - http
             - localhost:9898/readyz
           failureThreshold: 3
-          initialDelaySeconds: 1
+          initialDelaySeconds: 10
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
@@ -87,41 +88,3 @@ spec:
       volumes:
       - emptyDir: {}
         name: data
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  labels:
-    app.kubernetes.io/name: frontend-podinfo
-  name: frontend-podinfo
-spec:
-  rules:
-  - host: podinfo.fbi.com
-    http:
-      paths:
-      - backend:
-          service:
-            name: frontend-podinfo
-            port:
-              number: 9898
-        path: /
-        pathType: ImplementationSpecific
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-podinfo
-spec:
-  ports:
-  - name: http
-    port: 9898
-    protocol: TCP
-    targetPort: http
-  - name: grpc
-    port: 9999
-    protocol: TCP
-    targetPort: grpc
-  selector:
-    app.kubernetes.io/name: frontend-podinfo
-  sessionAffinity: None
-  type: ClusterIP

@@ -2,9 +2,11 @@
 
 En caso de no tener acceso al cluster EKS del taller, aquí se muestran unas instrucciones para recrear el entorno en un PC a través de kind (kubernetes in docker).
 
-## Instalación de Kind
+## Instalación de Kind y Helm
 
 https://kind.sigs.k8s.io/docs/user/quick-start#installation
+
+https://helm.sh/docs/intro/install/
 
 
 ## Creación de cluster local
@@ -19,13 +21,13 @@ kind create cluster --config=kind-cluster.yaml
 kubectl apply -f resources/ingress-nginx.yaml
 ```
 
-## Despliegue de la Aplicación "podinfo"
-
+Espera a que el ingress controller esté listo:
 ```
-kubectl apply -f resources/podinfo_base.yaml
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=120s
 ```
-
-Acceso a través de: [http://podinfo.fbi.com](http://podinfo.fbi.com)
 
 ## Instalación de Kubernetes-dashboard
 
@@ -37,3 +39,30 @@ kubectl apply -f resources/kubernetes-dashboard.yaml
 
 Acceso a través de: [http://kubernetes-dashboard.fbi.com](http://kubernetes-dashboard.fbi.com)
 
+## Instalación de Prometheus y Grafana
+
+Añadimos el repo de prometheus-stack a helm:
+
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+
+Instalamos el helm chart:
+
+```
+helm install -n monitoring --create-namespace \
+    kube-prometheus-stack prometheus-community/kube-prometheus-stack \
+    --set kube-state-metrics.prometheus.monitor.interval=1s \
+    --set grafana.ingress.enabled=true \
+    --set grafana.ingress.hosts={grafana.fbi.com} \
+    --set grafana.defaultDashboardsEnabled=false
+```
+
+Instalamos el dashboard:
+
+```
+kubectl apply -f resources/pulpoconf-dashboard-configmap.yaml
+```
+
+Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com

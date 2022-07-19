@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: frontend-podinfo
-    app.kubernetes.io/version: 6.1.6
+    app.kubernetes.io/version: 6.1.2
   name: frontend-podinfo
 spec:
   progressDeadlineSeconds: 600
@@ -12,10 +12,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: frontend-podinfo
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 1
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       annotations:
@@ -41,7 +38,7 @@ spec:
           value: '#34577c'
         - name: PODINFO_BACKEND_URL
           value: http://backend-podinfo:9898/echo
-        image: ghcr.io/stefanprodan/podinfo2:6.1.4
+        image: ghcr.io/stefanprodan/podinfo:6.1.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -74,7 +71,7 @@ spec:
             - http
             - localhost:9898/readyz
           failureThreshold: 3
-          initialDelaySeconds: 1
+          initialDelaySeconds: 10
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
