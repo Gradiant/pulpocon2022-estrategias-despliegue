@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
+    app: frontend-podinfo
     app.kubernetes.io/name: frontend-podinfo
-    app.kubernetes.io/version: 6.1.6
+    app.kubernetes.io/version: 6.1.1
   name: frontend-podinfo
 spec:
   progressDeadlineSeconds: 600
