@@ -17,8 +17,7 @@ se debe elegir cuidadosamente la estrategia correcta para hacer que su infraestr
 
 Instalación en local:
 
-![Kubernetes deployment recreate](local-kind/README.md)
-
+- [Instalación infraestructura](local-kind/README.md)
 
 #### Example graph
 

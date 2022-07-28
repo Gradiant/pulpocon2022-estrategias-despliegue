@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: green
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: app
+        version: "2.0.0"
+    spec:
+      containers:
+      - name: application
+        image: learnk8s/app:2.0.0
+        ports:
+          - containerPort: 8080
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080

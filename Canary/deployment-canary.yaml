@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: canary
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: app
+        version: "2.0.0"
+    spec:
+      containers:
+      - name: application
+        image: learnk8s/app:2.0.0
+        ports:
+          - containerPort: 8080
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+          periodSeconds: 5
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+          periodSeconds: 5

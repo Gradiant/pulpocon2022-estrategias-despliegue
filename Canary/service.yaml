@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: entry-point
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: NodePort
+  selector:
+    version: "1.0.0"
