@@ -19,6 +19,7 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 ```
 # Deploy the first application
 $ kubectl apply -f deployment611.yaml
+$ kubectl apply -f service.yaml
 
 # Test if the deployment was successful
 $ curl $(minikube service frontend-podinfo --url)
@@ -39,6 +40,6 @@ $ while sleep 0.1; do curl "$service"; done
 ### Cleanup
 
 ```bash
-$ kubectl delete -f deployment612.yam
+$ kubectl delete -f deployment612.yaml
+$ kubectl delete -f service.yaml
 ```
-#$ kubectl delete all -l app=frontend-podinfo
