@@ -1,17 +1,27 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: green
+  name: my-app-v2
+  labels:
+    app: my-app
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      version: v2.0.0
   template:
     metadata:
       labels:
-        name: app
-        version: "2.0.0"
+        app: my-app
+        version: v2.0.0
+      annotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      creationTimestamp: null
     spec:
       containers:
-      - name: application
+      - name: my-app
         image: learnk8s/app:2.0.0
         ports:
           - containerPort: 8080

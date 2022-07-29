@@ -57,6 +57,7 @@ $ watch kubectl get pods
 
 # Then deploy version 2 of the application
 $ kubectl apply -f deployment612.yaml
+
 # port-forward from 9898 to localhost to port 9000
 $ screen -d -m -S "frontend-podinfo_ports" bash -c "kubectl port-forward deployment/frontend-podinfo 9000:9898"
 # Test the second deployment progress

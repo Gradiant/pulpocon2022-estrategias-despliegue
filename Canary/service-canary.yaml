@@ -5,13 +5,12 @@ metadata:
   labels:
     app: my-app
 spec:
-  type: ClusterIP #LoadBalancer #NodePort
   ports:
   - name: http
     port: 80
     targetPort: 8080
-  
-  # Note here that we match both the app and the version
+  type: ClusterIP
+
+  # Note here that we match only the app
   selector:
     app: my-app
-    version: v2.0.0
