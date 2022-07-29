@@ -29,7 +29,6 @@ $ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
 $ curl myapp.fbi.com
-2018-01-28T00:22:04+01:00 - Host: host-1, Version: v1.0.0
 
 # To see the deployment in action, open a new terminal and run the following command.
 $ watch kubectl get pods
@@ -66,6 +65,7 @@ $ kubectl delete deploy my-app-v1
 
 ```bash
 $ kubectl delete all -l app=my-app
+$ kubectl delete -f ingress-app.yaml
 ```
 
 **Se puede aplicacr el despliegue blue/gree para un único servicio o para varios servicios usando un Ingress controller:**

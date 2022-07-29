@@ -11,8 +11,7 @@ spec:
   selector:
     matchLabels:
       # app.kubernetes.io/name: frontend-podinfo
-      app: my-app
-      version: v6.1.2      
+      app: my-app   
   strategy:
     rollingUpdate:
       maxSurge: 1

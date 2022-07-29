@@ -12,7 +12,6 @@ spec:
     matchLabels:
       # app.kubernetes.io/name: frontend-podinfo
       app: my-app
-      version: v6.1.2
   strategy:
     type: Recreate
   progressDeadlineSeconds: 600
