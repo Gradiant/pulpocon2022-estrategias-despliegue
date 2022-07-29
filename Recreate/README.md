@@ -16,7 +16,7 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 
 ## En la práctica
 
-```bash
+```
 # Deploy the first application
 $ kubectl apply -f deployment611.yaml
 $ kubectl apply -f service.yaml
