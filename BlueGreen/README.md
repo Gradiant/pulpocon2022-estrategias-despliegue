@@ -21,6 +21,7 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 ## In practice
 
 ```bash
+cd BlueGreen
 # Deploy the first application
 $ kubectl apply -f deploy-app-v1-blue.yaml
 $ kubectl apply -f service-blue-green.yaml

@@ -26,6 +26,7 @@ para aumentar el tiempo de despliegue:
 ## En la práctica
 
 ```bash
+cd RollingUpdate
 # Deploy the first application
 $ kubectl apply -f deployment611.yaml
 $ kubectl apply -f service.yaml
@@ -45,24 +46,19 @@ $ while sleep 0.1; do curl "myapp.fbi.com"; done
 
 # In case you discover some issue with the new version, you can undo the
 # rollout
-$ kubectl rollout undo deploy frontend-podinfo
+$ kubectl rollout undo deploy my-app
 
 # If you can also pause the rollout if you want to run the application for a
 # subset of users
-$ kubectl rollout pause deploy frontend-podinfo
+$ kubectl rollout pause deploy my-app
 
 # Then if you are satisfy with the result, rollout
-$ kubectl rollout resume deploy frontend-podinfo
+$ kubectl rollout resume deploy my-app
 ```
 
 ### Cleanup
 
 ```bash
-$ kubectl delete -f deployment612.yaml
-$ kubectl delete -f service.yaml
-$ kubectl delete -f ingress-app.yaml
-```
-
-```bash
 $ kubectl delete all -l app=my-app
+$ kubectl delete -f ingress-app.yaml
 ```

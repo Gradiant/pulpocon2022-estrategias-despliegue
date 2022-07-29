@@ -26,6 +26,7 @@ y no errores inesperados
 ## En práctica
 
 ```bash
+cd Canary
 # Deploy the first application
 $ kubectl apply -f deploy-my-app-v1.yaml
 $ kubectl apply -f service-canary.yaml

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-v2 # frontend-podinfo
+  name: my-app # frontend-podinfo
   labels:
     app: my-app # frontend-podinfo
     # app.kubernetes.io/name: frontend-podinfo
