@@ -33,7 +33,6 @@ $ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
 $ curl myapp.fbi.com
-2018-01-28T00:22:04+01:00 - Host: host-1, Version: v1.0.0
 
 # To see the deployment in action, open a new terminal and run a watch command.
 # It will show you a better view on the progress
