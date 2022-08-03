@@ -4,11 +4,11 @@
 > En kuberentes hay pocas formas diferentes de lanzar una aplicación, 
 se debe elegir cuidadosamente la estrategia correcta para hacer que su infraestructura sea resilente.
 
-- [recreate](Recreate/): termina la version anterior y se lanza la nueva
-- [rollingUpdate](RollingUpdate/): release una nueva version en modo rolling update modo, una después de otra
-- [blue/green](BlueGreen/): release una nueva version junto la versión anterior 
+- [recreate](recreate/): termina la version anterior y se lanza la nueva
+- [rollingUpdate](rolling-update/): release una nueva version en modo rolling update modo, una después de otra
+- [blue/green](blue-green/): release una nueva version junto la versión anterior 
   y luego cambiar el tráfico
-- [canary](Canary/): release una nueva version a un subconjunto de usuarios, entonces procedemos
+- [canary](canary/): release una nueva version a un subconjunto de usuarios, entonces procedemos
   al lanzamiento completo
 
 ![deployment strategy decision diagram](decision-diagram.png)
@@ -23,19 +23,19 @@ Instalación en local:
 
 Recreate:
 
-![Kubernetes deployment recreate](Recreate/grafana-recreate.png)
+![Kubernetes deployment recreate](recreate/grafana-recreate.png)
 
 RollingUpdate:
 
-![Kubernetes deployment ramped](RollingUpdate/grafana-rollingUpdate.png)
+![Kubernetes deployment ramped](rolling-update/grafana-rollingUpdate.png)
 
 Blue/Green:
 
-![Kubernetes deployment blue-green](BlueGreen/grafana-blue-green.png)
+![Kubernetes deployment blue-green](blue-green/grafana-blue-green.png)
 
 Canary:
 
-![Kubernetes deployment canary](Canary/grafana-canary.png)
+![Kubernetes deployment canary](canary/grafana-canary.png)
 
 #### Bibliography
 

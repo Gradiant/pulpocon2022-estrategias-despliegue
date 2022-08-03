@@ -28,8 +28,7 @@ para aumentar el tiempo de despliegue:
 ```bash
 cd RollingUpdate
 # Deploy the first application
-$ kubectl apply -f deployment611.yaml
-$ kubectl apply -f service.yaml
+$ kubectl apply -f app-v1.yaml
 $ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
@@ -40,7 +39,7 @@ $ curl myapp.fbi.com
 $ watch kubectl get pods
 
 # Then deploy version 2 of the application
-$ kubectl apply -f deployment612.yaml
+$ kubectl apply -f app-v2.yaml
 
 $ while sleep 0.1; do curl "myapp.fbi.com"; done
 

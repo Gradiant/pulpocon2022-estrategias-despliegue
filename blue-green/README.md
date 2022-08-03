@@ -22,9 +22,8 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 
 ```bash
 cd BlueGreen
-# Deploy the first application
-$ kubectl apply -f deploy-app-v1-blue.yaml
-$ kubectl apply -f service-blue-green.yaml
+# Deploy the first application option blue
+$ kubectl apply -f app-v1-blue.yaml
 $ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
@@ -33,8 +32,8 @@ $ curl myapp.fbi.com
 # To see the deployment in action, open a new terminal and run the following command.
 $ watch kubectl get pods
 
-# Then deploy version 2 of the application
-$ kubectl apply -f deploy-app-v2-green.yaml
+# Then deploy version 2 of the application option green
+$ kubectl apply -f app-v2-green.yaml
 
 # Wait for all the version 2 pods to be running
 $ kubectl rollout status deploy my-app-v2 -w

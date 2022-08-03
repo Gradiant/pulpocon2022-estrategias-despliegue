@@ -28,8 +28,7 @@ y no errores inesperados
 ```bash
 cd Canary
 # Deploy the first application
-$ kubectl apply -f deploy-my-app-v1.yaml
-$ kubectl apply -f service-canary.yaml
+$ kubectl apply -f app-v1.yaml
 $ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
@@ -40,7 +39,7 @@ $ curl myapp.fbi.com
 $ watch kubectl get pods
 
 # Then deploy version 2 of the application and scale down version 1 to 9 replicas at same time
-$ kubectl apply -f deploy-my-app-v2.yaml
+$ kubectl apply -f app-v2.yaml
 $ kubectl scale --replicas=9 deploy my-app-v1
 
 # Only one pod with the new version should be running.
