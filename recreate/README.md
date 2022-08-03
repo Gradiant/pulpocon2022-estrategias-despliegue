@@ -20,6 +20,7 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 cd recreate
 # Deploy the first application
 $ kubectl apply -f app-v1.yaml
+$ kubectl apply -f ingress-app.yaml
 
 # Test if the deployment was successful
 $ curl myapp.fbi.com
