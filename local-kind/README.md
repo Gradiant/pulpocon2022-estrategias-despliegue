@@ -56,12 +56,13 @@ helm install -n monitoring --create-namespace \
     --set kube-state-metrics.prometheus.monitor.interval=1s \
     --set grafana.ingress.enabled=true \
     --set grafana.ingress.hosts={grafana.fbi.com} \
-    --set grafana.defaultDashboardsEnabled=false
+    --set grafana.defaultDashboardsEnabled=true
 ```
 
 Instalamos el dashboard:
 
 ```
+kubectl apply -f resources/service-monitor-my-app.yaml
 kubectl apply -f resources/pulpoconf-dashboard-configmap.yaml
 ```
 
