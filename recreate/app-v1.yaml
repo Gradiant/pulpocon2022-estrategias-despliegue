@@ -10,6 +10,12 @@ spec:
   - name: http
     port: 80
     targetPort: http
+  - name: probe
+    port: 8086
+    targetPort: 8086
+  - name: metrics
+    port: 9101
+    targetPort: 9101
   selector:
     app: my-app
 ---
@@ -34,10 +40,13 @@ spec:
       labels:
         app: my-app
         version: v1.0.0
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9101"
     spec:
       containers:
       - name: my-app
-        image: containersol/k8s-deployment-strategies #deekshithsn/k8s-deployment-strategies
+        image: containersol/k8s-deployment-strategies
         ports:
         - name: http
           containerPort: 8080
