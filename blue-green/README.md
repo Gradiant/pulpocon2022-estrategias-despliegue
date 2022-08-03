@@ -21,7 +21,7 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 ## In practice
 
 ```bash
-cd BlueGreen
+cd blue-green
 # Deploy the first application option blue
 $ kubectl apply -f app-v1-blue.yaml
 $ kubectl apply -f ingress-app.yaml

@@ -3,7 +3,7 @@ RollingUpdate deployment
 
 > Version B se implementa lentamente y va reemplazando a la version A. También conocido como ramped o incremental.
 
-![kubernetes rollingUpdate deployment](grafana-rollingUpdate.png)
+![kubernetes rollingUpdate deployment](grafana-rolling-update.png)
 
 La estrategia rollingUpdate consiste en desplagar lentamente una version de una aplicación reemplazando
 las instancias una tras otra hasta qye todas las instancias son desplegadas.
@@ -26,7 +26,7 @@ para aumentar el tiempo de despliegue:
 ## En la práctica
 
 ```bash
-cd RollingUpdate
+cd rolling-update
 # Deploy the first application
 $ kubectl apply -f app-v1.yaml
 $ kubectl apply -f ingress-app.yaml

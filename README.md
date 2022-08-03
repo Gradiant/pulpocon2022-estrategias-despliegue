@@ -27,7 +27,7 @@ Recreate:
 
 RollingUpdate:
 
-![Kubernetes deployment ramped](rolling-update/grafana-rollingUpdate.png)
+![Kubernetes deployment ramped](rolling-update/grafana-rolling-update.png)
 
 Blue/Green:
 
