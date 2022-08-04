@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pulpocon-app 
+  labels:
+    app: pulpocon-app 
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 9898 
+  selector:
+    app: pulpocon-app 
+    # version: v1.0.0
+
