@@ -10,7 +10,7 @@ spec:
   ports:
   - name: http
     port: 8080
-    targetPort: 9898 
+    targetPort: 8080
   selector:
     app: pulpocon-app 
     # version: v1.0.0
