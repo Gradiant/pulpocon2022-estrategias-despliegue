@@ -26,38 +26,37 @@ para aumentar el tiempo de despliegue:
 ## En la práctica
 
 ```bash
-cd rolling-update
+
 # Deploy the first application
-$ kubectl apply -f app-v1.yaml
-$ kubectl apply -f ingress-app.yaml
+kubectl apply -f app-v1.yaml
+
 
 # Test if the deployment was successful
-$ curl myapp.fbi.com
+curl my-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run the following
 # command
-$ watch kubectl get pods
+watch kubectl get pods
 
 # Then deploy version 2 of the application
-$ kubectl apply -f app-v2.yaml
+kubectl apply -f app-v2.yaml
 
-$ while sleep 0.1; do curl "myapp.fbi.com"; done
+while sleep 0.1; do curl "my-app.fbi.com"; done
 
 # In case you discover some issue with the new version, you can undo the
 # rollout
-$ kubectl rollout undo deploy my-app
+kubectl rollout undo deploy my-app
 
 # If you can also pause the rollout if you want to run the application for a
 # subset of users
-$ kubectl rollout pause deploy my-app
+kubectl rollout pause deploy my-app
 
 # Then if you are satisfy with the result, rollout
-$ kubectl rollout resume deploy my-app
+kubectl rollout resume deploy my-app
 ```
 
 ### Cleanup
 
 ```bash
-$ kubectl delete all -l app=my-app
-$ kubectl delete -f ingress-app.yaml
+kubectl delete all -l app=my-app
 ```

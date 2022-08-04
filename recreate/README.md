@@ -17,27 +17,25 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 ## En la práctica
 
 ```bash
-cd recreate
+
 # Deploy the first application
-$ kubectl apply -f app-v1.yaml
-$ kubectl apply -f ingress-app.yaml
+kubectl apply -f app-v1.yaml
 
 # Test if the deployment was successful
-$ curl myapp.fbi.com
+curl my-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run the following command.
-$ watch kubectl get pods
+watch kubectl get pods
 
 # Then deploy version 2 of the application
-$ kubectl apply -f app-v2.yaml
+kubectl apply -f app-v2.yaml
 
 # Test the second deployment progress
-$ while sleep 0.1; do curl "myapp.fbi.com"; done
+while sleep 0.1; do curl "my-app.fbi.com"; done
 ```
 
 ### Cleanup
 
 ```bash
-$ kubectl delete all -l app=my-app
-$ kubectl delete -f ingress-app.yaml
+kubectl delete all -l app=my-app
 ```

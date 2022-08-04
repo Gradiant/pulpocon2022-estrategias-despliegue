@@ -1,3 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+  labels:
+    app: my-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
+
+  # Note here that we match only the app
+  selector:
+    app: my-app
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

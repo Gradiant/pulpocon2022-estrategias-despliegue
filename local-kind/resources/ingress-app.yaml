@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: rules
   labels:
-    app: my-app  
+    app: my-app
+  namespace: default  
 spec:
   rules:
   - host: myapp.fbi.com

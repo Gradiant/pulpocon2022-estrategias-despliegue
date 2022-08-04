@@ -21,23 +21,21 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 ## In practice
 
 ```bash
-cd blue-green
+
 # Deploy the first application option blue
-$ kubectl apply -f app-v1-blue.yaml
-$ kubectl apply -f ingress-app.yaml
+kubectl apply -f app-v1-blue.yaml
 
 # Test if the deployment was successful
-$ curl myapp.fbi.com
+curl my-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run the following command.
-$ watch kubectl get pods
+watch kubectl get pods
 
 # Then deploy version 2 of the application option green
-$ kubectl apply -f app-v2-green.yaml
+kubectl apply -f app-v2-green.yaml
 
 # Wait for all the version 2 pods to be running
-$ kubectl rollout status deploy my-app-v2 -w
-deployment "my-app-v2" successfully rolled out
+kubectl rollout status deploy my-app-v2 -w
 
 # Side by side, 3 pods are running with version 2 but the service still send
 # traffic to the first deployment.
@@ -47,24 +45,23 @@ deployment "my-app-v2" successfully rolled out
 
 # Once your are ready, you can switch the traffic to the new version by patching
 # the service to send traffic to all pods with label version=v2.0.0
-$ kubectl patch service my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
+kubectl patch service my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
 
 # Test if the second deployment was successful
-$ while sleep 0.1; do curl "myapp.fbi.com"; done
+while sleep 0.1; do curl "my-app.fbi.com"; done
 
 # In case you need to rollback to the previous version
-$ kubectl patch service my-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
+kubectl patch service my-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
 
 # If everything is working as expected, you can then delete the v1.0.0
 # deployment
-$ kubectl delete deploy my-app-v1
+kubectl delete deploy my-app-v1
 ```
 
 ### Cleanup
 
 ```bash
-$ kubectl delete all -l app=my-app
-$ kubectl delete -f ingress-app.yaml
+kubectl delete all -l app=my-app
 ```
 
 **Se puede aplicacr el despliegue blue/gree para un único servicio o para varios servicios usando un Ingress controller:**

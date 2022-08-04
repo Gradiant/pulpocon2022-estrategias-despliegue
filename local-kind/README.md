@@ -67,3 +67,13 @@ kubectl apply -f resources/pulpoconf-dashboard-configmap.yaml
 ```
 
 Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com
+
+## Configuración del ingress de acceso de nuestra aplicación my-app
+
+Instalamos el ingress para que nuestra aplicación "my-app" ( con las etiquetas "app: my-app" en el namespace default ) se pueda acceder con la url [http://my-app.fbi.com](http://my-app.fbi.com)
+
+```
+kubectl apply -f resources/ingress-app.yaml
+```
+
+OJO => Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://my-app.fbi.com](http://my-app.fbi.com)
