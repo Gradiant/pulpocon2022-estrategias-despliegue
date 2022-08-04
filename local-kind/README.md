@@ -31,7 +31,7 @@ kubectl wait --namespace ingress-nginx \
 
 ## Instalación de Kubernetes-dashboard
 
-Se han modificado la instalación de kubernetes-dashboard para permitir saltar la autorización y trabajar como administrador. Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
+ :warning: Se han modificado la instalación de kubernetes-dashboard **para permitir saltar la autorización y trabajar como administrador.**: Be very careful here! Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
 
 ```
 kubectl apply -f resources/kubernetes-dashboard.yaml
@@ -61,12 +61,20 @@ helm install -n monitoring --create-namespace \
     --set grafana.ini.min_refresh_interval=1s
 ```
 
+Espera a que el prometheus-stack esté listo:
+
+```
+kubectl wait --namespace monitoring \
+  --for=condition=available \
+  --all deployments \
+  --timeout=120s
+```
+
 Instalamos el dashboard, para ello creamos un configmap a partir de la definición del fichero donde está definido el dashboard:
 
 ```
-kubectl create configmap -n monitoring grafana-dashboard --from-file=resources/pulpocon2022.json
-kubectl label configmap -n monitoring grafana-dashboard "grafana_dashboard" "1"
-####  kubectl apply -f resources/pulpoconf-dashboard-configmap.yaml
+kubectl create configmap -n monitoring pulpoconf-dashboard  --from-file=resources/pulpocon2022.json
+kubectl label configmap -n monitoring pulpoconf-dashboard grafana_dashboard="1"
 ```
 
 Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com
@@ -79,5 +87,5 @@ Instalamos el ingress para que nuestra aplicación "pulpocon-app" ( con las etiq
 kubectl apply -f resources/ingress-app.yaml
 ```
 
-OJO => Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)
+ :warning: **Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)**
 

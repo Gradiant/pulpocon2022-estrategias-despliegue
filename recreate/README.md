@@ -17,12 +17,14 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 ## En la práctica
 
 ```bash
+# Deploy the service one time for almost all deployment strategies
+kubectl apply -f ../service.yaml
 
 # Deploy the first application
 kubectl apply -f app-v1.yaml
 
 # Test if the deployment was successful
-curl my-app.fbi.com
+curl pulpocon-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run the following command.
 watch kubectl get pods
@@ -31,11 +33,11 @@ watch kubectl get pods
 kubectl apply -f app-v2.yaml
 
 # Test the second deployment progress
-while sleep 0.1; do curl "my-app.fbi.com"; done
+while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
 ```
 
 ### Cleanup
 
 ```bash
-kubectl delete all -l app=my-app
+kubectl delete deploy -l app=pulpocon-app
 ```
