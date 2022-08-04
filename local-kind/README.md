@@ -56,7 +56,7 @@ helm install -n monitoring --create-namespace \
     --set kube-state-metrics.prometheus.monitor.interval=1s \
     --set grafana.ingress.enabled=true \
     --set grafana.ingress.hosts={grafana.fbi.com} \
-    --set grafana.defaultDashboardsEnabled=true
+    --set grafana.defaultDashboardsEnabled=false
 ```
 
 Instalamos el dashboard:
