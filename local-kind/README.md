@@ -56,32 +56,26 @@ helm install -n monitoring --create-namespace \
     --set kube-state-metrics.prometheus.monitor.interval=1s \
     --set grafana.ingress.enabled=true \
     --set grafana.ingress.hosts={grafana.fbi.com} \
-    --set grafana.defaultDashboardsEnabled=false
-
-helm upgrade -n monitoring  \
-    kube-prometheus-stack prometheus-community/kube-prometheus-stack \
-    --set kube-state-metrics.prometheus.monitor.interval=1s \
-    --set grafana.ingress.enabled=true \
-    --set grafana.ingress.hosts={grafana.fbi.com} \
     --set grafana.defaultDashboardsEnabled=false \
     -f resources/prom-custom-values.yaml
 ```
 
-Instalamos el dashboard:
+Instalamos el dashboard, para ello creamos un configmap a partir de la definición del fichero donde está definido el dashboard:
 
 ```
-kubectl apply -f resources/service-monitor-my-app.yaml
-kubectl apply -f resources/pulpoconf-dashboard-configmap.yaml
+kubectl create configmap -n monitoring grafana-dashboard --from-file=resources/pulpocon2022.json
+kubectl label configmap -n monitoring grafana-dashboard "grafana_dashboard" "1"
 ```
 
 Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com
 
-## Configuración del ingress de acceso de nuestra aplicación my-app
+## Configuración del ingress de acceso de nuestra aplicación pulpocon-app
 
-Instalamos el ingress para que nuestra aplicación "my-app" ( con las etiquetas "app: my-app" en el namespace default ) se pueda acceder con la url [http://my-app.fbi.com](http://my-app.fbi.com)
+Instalamos el ingress para que nuestra aplicación "pulpocon-app" ( con las etiquetas "app: pulpocon-app" en el namespace default ) sea accesible mediante la url [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)
 
 ```
 kubectl apply -f resources/ingress-app.yaml
 ```
 
-OJO => Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://my-app.fbi.com](http://my-app.fbi.com)
+OJO => Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)
+
