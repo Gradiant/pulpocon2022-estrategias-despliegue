@@ -3,9 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pulpocon-app
-  name: pulpocon-app
   labels:
-    app: pulpocon-app
     app: pulpocon-app
 spec:
   replicas: 10
@@ -31,11 +29,9 @@ spec:
   selector:
     matchLabels:
       app: pulpocon-app
-      app: pulpocon-app
   template:
     metadata:
       labels:
-        app: pulpocon-app
         app: pulpocon-app
         version: v2.0.0
       annotations:
@@ -43,7 +39,6 @@ spec:
         prometheus.io/port: "9101"
     spec:
       containers:
-      - name: pulpocon-app
       - name: pulpocon-app
         image: pazgzlez/k8s-deployment-strategies:v2.0.0
         ports:
