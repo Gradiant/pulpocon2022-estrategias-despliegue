@@ -12,7 +12,7 @@ https://helm.sh/docs/intro/install/
 ## Creación de cluster local
 
 ```
-kind create cluster --config=kind-cluster.yaml
+kind create cluster --name pulpocon --config=kind-cluster.yaml
 ```
 
 ## Instalación de Ingress Controller
@@ -31,7 +31,7 @@ kubectl wait --namespace ingress-nginx \
 
 ## Instalación de Kubernetes-dashboard
 
-Se han modificado la instalación de kubernetes-dashboard para permitir saltar la autorización y trabajar como administrador. Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
+ :warning: Se han modificado la instalación de kubernetes-dashboard para permitir **"saltar"** la autorización y trabajar como **administrador**. Por favor, cuidado de no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
 
 ```
 kubectl apply -f resources/kubernetes-dashboard.yaml
@@ -61,6 +61,15 @@ helm install -n monitoring --create-namespace \
     --set grafana.ini.min_refresh_interval=1s
 ```
 
+Espera a que el prometheus-stack esté listo:
+
+```
+kubectl wait --namespace monitoring \
+  --for=condition=available \
+  --all deployments \
+  --timeout=120s
+```
+
 Instalamos el dashboard, para ello creamos un configmap a partir de la definición del fichero donde está definido el dashboard:
 
 ```
@@ -78,5 +87,11 @@ Instalamos el ingress para que nuestra aplicación "pulpocon-app" ( con las etiq
 kubectl apply -f resources/ingress-app.yaml
 ```
 
-OJO => Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)
+ :warning: **Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)**
 
+
+## Cleanup del cluster local
+
+```
+kind delete cluster --name pulpocon
+```

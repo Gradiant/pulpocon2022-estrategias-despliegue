@@ -21,12 +21,17 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 ## In practice
 
 ```bash
+# We can left ready the service sending the traffic only for the first version (blue) by patching
+# the service to send traffic to all pods with label version=v1.0.0
+kubectl get svc pulpocon-app -o yaml
+kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
+kubectl get svc pulpocon-app -o yaml
 
 # Deploy the first application option blue
 kubectl apply -f app-v1-blue.yaml
 
 # Test if the deployment was successful
-curl my-app.fbi.com
+curl pulpocon-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run the following command.
 watch kubectl get pods
@@ -35,7 +40,7 @@ watch kubectl get pods
 kubectl apply -f app-v2-green.yaml
 
 # Wait for all the version 2 pods to be running
-kubectl rollout status deploy my-app-v2 -w
+kubectl rollout status deploy pulpocon-app-v2 -w
 
 # Side by side, 3 pods are running with version 2 but the service still send
 # traffic to the first deployment.
@@ -43,25 +48,29 @@ kubectl rollout status deploy my-app-v2 -w
 # If necessary, you can manually test one of the pod by port-forwarding it to
 # your local environment.
 
-# Once your are ready, you can switch the traffic to the new version by patching
+# Once your are ready, you can switch the traffic to the new version (green) by patching
 # the service to send traffic to all pods with label version=v2.0.0
-kubectl patch service my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
+kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
 
 # Test if the second deployment was successful
-while sleep 0.1; do curl "my-app.fbi.com"; done
+while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
 
 # In case you need to rollback to the previous version
-kubectl patch service my-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
+kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
 
 # If everything is working as expected, you can then delete the v1.0.0
 # deployment
-kubectl delete deploy my-app-v1
+kubectl delete deploy pulpocon-app-v1
 ```
 
 ### Cleanup
 
 ```bash
-kubectl delete all -l app=my-app
+kubectl delete deploy -l app=pulpocon-app
+
+# Patch the service and left for the rest deployment strategies with only selector "app: pulpocon-app"
+kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/spec/selector/version"}]'
+kubectl get svc pulpocon-app -o yaml
 ```
 
 **Se puede aplicacr el despliegue blue/gree para un único servicio o para varios servicios usando un Ingress controller:**

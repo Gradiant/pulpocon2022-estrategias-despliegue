@@ -31,7 +31,7 @@ y no errores inesperados
 kubectl apply -f app-v1.yaml
 
 # Test if the deployment was successful
-curl my-app.fbi.com
+curl pulpocon-app.fbi.com
 
 # To see the deployment in action, open a new terminal and run a watch command.
 # It will show you a better view on the progress
@@ -39,23 +39,30 @@ watch kubectl get pods
 
 # Then deploy version 2 of the application and scale down version 1 to 9 replicas at same time
 kubectl apply -f app-v2.yaml
-kubectl scale --replicas=9 deploy my-app-v1
+kubectl scale --replicas=9 deploy pulpocon-app-v1
 
 # Only one pod with the new version should be running.
 # You can test if the second deployment was successful
-while sleep 0.1; do curl "my-app.fbi.com"; done
+while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
+
+kubectl scale --replicas=2 deploy pulpocon-app-v2
+kubectl scale --replicas=8 deploy pulpocon-app-v1
+
+...
+
+kubectl scale --replicas=9 deploy pulpocon-app-v2
+kubectl scale --replicas=1 deploy pulpocon-app-v1
 
 # If you are happy with it, scale up the version 2 to 10 replicas
-kubectl scale --replicas=10 deploy my-app-v2
-
 # Then, when all pods are running, you can safely delete the old deployment
-kubectl delete deploy my-app-v1
+kubectl scale --replicas=10 deploy pulpocon-app-v2
+kubectl delete deploy pulpocon-app-v1
 ```
 
 ### Cleanup
 
 ```bash
-kubectl delete all -l app=my-app
+kubectl delete deploy -l app=pulpocon-app
 ```
 
 **Se puede implementar de forma nativa ajustando el número de réplicas o podemos usar un Nginx como Controlador de Ingress de entrada y se puede configurar la división del trafico más fino a través de anotaciones de Ingress (nginx.ingress.kubernetes.io/canary: "true" and nginx.ingress.kubernetes.io/canary-weight: "10"**

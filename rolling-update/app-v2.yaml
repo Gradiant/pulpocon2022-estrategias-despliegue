@@ -64,4 +64,3 @@ spec:
           # visibility of the ramped deployment
           initialDelaySeconds: 15
           periodSeconds: 5
-
