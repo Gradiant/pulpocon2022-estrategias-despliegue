@@ -73,8 +73,8 @@ kubectl wait --namespace monitoring \
 Instalamos el dashboard, para ello creamos un configmap a partir de la definición del fichero donde está definido el dashboard:
 
 ```
-kubectl create configmap -n monitoring pulpoconf-dashboard  --from-file=resources/pulpocon2022.json
-kubectl label configmap -n monitoring pulpoconf-dashboard grafana_dashboard="1"
+kubectl create configmap -n monitoring grafana-dashboard --from-file=resources/pulpocon2022.json
+kubectl label configmap -n monitoring grafana-dashboard grafana_dashboard=1
 ```
 
 Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com
