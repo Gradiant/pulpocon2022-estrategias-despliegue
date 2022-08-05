@@ -5,8 +5,8 @@
 se debe elegir cuidadosamente la estrategia correcta para hacer que su infraestructura sea resilente.
 
 - [recreate](recreate/): termina la version anterior y se lanza la nueva
-- [rollingUpdate](rolling-update/): release una nueva version en modo rolling update modo, una después de otra
-- [blue/green](blue-green/): release una nueva version junto la versión anterior 
+- [rollingUpdate](rolling-update/): release una nueva version en modo rolling update, una después de otra
+- [blue/green](blue-green/): release una nueva version junto con la versión anterior 
   y luego cambiar el tráfico
 - [canary](canary/): release una nueva version a un subconjunto de usuarios, entonces procedemos
   al lanzamiento completo
