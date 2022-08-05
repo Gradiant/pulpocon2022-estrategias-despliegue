@@ -12,7 +12,7 @@ https://helm.sh/docs/intro/install/
 ## Creación de cluster local
 
 ```
-kind create cluster --config=kind-cluster.yaml
+kind create cluster --name pulpocon --config=kind-cluster.yaml
 ```
 
 ## Instalación de Ingress Controller
@@ -89,3 +89,9 @@ kubectl apply -f resources/ingress-app.yaml
 
  :warning: **Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)**
 
+
+## Cleanup del cluster local
+
+```
+kind delete cluster --name pulpocon
+```
