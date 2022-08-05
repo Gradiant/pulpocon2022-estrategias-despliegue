@@ -32,6 +32,7 @@ kubectl apply -f app-v1.yaml
 
 # Test if the deployment was successful
 curl pulpocon-app.fbi.com
+curl -k https://pulpocon-user20.pulpocon.gradiant.org
 
 # To see the deployment in action, open a new terminal and run a watch command.
 # It will show you a better view on the progress
@@ -44,6 +45,7 @@ kubectl scale --replicas=9 deploy pulpocon-app-v1
 # Only one pod with the new version should be running.
 # You can test if the second deployment was successful
 while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
+while sleep 0.1; do curl -k "https://pulpocon-user20.pulpocon.gradiant.org"; done
 
 kubectl scale --replicas=2 deploy pulpocon-app-v2
 kubectl scale --replicas=8 deploy pulpocon-app-v1

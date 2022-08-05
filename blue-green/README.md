@@ -32,6 +32,7 @@ kubectl apply -f app-v1-blue.yaml
 
 # Test if the deployment was successful
 curl pulpocon-app.fbi.com
+curl -k https://pulpocon-user20.pulpocon.gradiant.org
 
 # To see the deployment in action, open a new terminal and run the following command.
 watch kubectl get pods
@@ -54,6 +55,7 @@ kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v2.0.0"}}
 
 # Test if the second deployment was successful
 while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
+while sleep 0.1; do curl -k "https://pulpocon-user20.pulpocon.gradiant.org"; done
 
 # In case you need to rollback to the previous version
 kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
