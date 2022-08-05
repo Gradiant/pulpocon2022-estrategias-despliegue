@@ -27,8 +27,9 @@ y no errores inesperados
 
 ```bash
 
-# Deploy the service one time for almost all deployment strategies
-kubectl apply -f ../service.yaml
+# Deploy the service with only selector "app: pulpocon-app"
+kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/spec/selector/version"}]'
+kubectl get svc pulpocon-app -o yaml
 
 # Deploy the first application
 kubectl apply -f app-v1.yaml
@@ -48,10 +49,15 @@ kubectl scale --replicas=9 deploy pulpocon-app-v1
 # You can test if the second deployment was successful
 while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
 
-# If you are happy with it, scale up the version 2 to 10 replicas
-kubectl scale --replicas=10 deploy pulpocon-app-v2
+kubectl scale --replicas=2 deploy pulpocon-app-v2
+kubectl scale --replicas=8 deploy pulpocon-app-v1
 
+kubectl scale --replicas=9 deploy pulpocon-app-v2
+kubectl scale --replicas=1 deploy pulpocon-app-v1
+
+# If you are happy with it, scale up the version 2 to 10 replicas
 # Then, when all pods are running, you can safely delete the old deployment
+kubectl scale --replicas=10 deploy pulpocon-app-v2
 kubectl delete deploy pulpocon-app-v1
 ```
 

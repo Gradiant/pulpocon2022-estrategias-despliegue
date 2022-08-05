@@ -24,6 +24,7 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 # We can left ready the service sending the traffic only for the first version (blue) by patching
 # the service to send traffic to all pods with label version=v1.0.0
 kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
+kubectl get svc pulpocon-app -o yaml
 
 # Deploy the first application option blue
 kubectl apply -f app-v1-blue.yaml
