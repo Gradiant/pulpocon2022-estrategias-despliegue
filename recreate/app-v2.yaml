@@ -48,3 +48,7 @@ spec:
             path: /ready
             port: probe
           periodSeconds: 5
+          
+          # Intial delay is set to a high value to have a better
+          # visibility of the recreate deployment
+          initialDelaySeconds: 15
