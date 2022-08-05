@@ -31,7 +31,7 @@ kubectl wait --namespace ingress-nginx \
 
 ## Instalación de Kubernetes-dashboard
 
- :warning: Se han modificado la instalación de kubernetes-dashboard **para permitir <span style="color:blue">*"saltar"*</span> la autorización y trabajar como administrador.**: Be very careful here! Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
+ :warning: Se han modificado la instalación de kubernetes-dashboard **para permitir @@"saltar"@@ la autorización y trabajar como administrador.**: Be very careful here! Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
 
 ```
 kubectl apply -f resources/kubernetes-dashboard.yaml
