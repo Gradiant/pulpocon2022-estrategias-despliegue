@@ -41,7 +41,7 @@ You can use the diff language tag to generate some colored text:
 # text in gray
 @@ text in purple (and bold)@@
 ```
- :warning: Se han modificado la instalación de kubernetes-dashboard **para permitir ```@@"saltar"@@``` la autorización y trabajar como administrador.**: Be very careful here! Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
+ :warning: Se han modificado la instalación de kubernetes-dashboard **para permitir $$\textcolor{red}{\text{"saltar"}}$$ la autorización y trabajar como administrador.**: Be very careful here! Por favor, no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
 
 ```
 kubectl apply -f resources/kubernetes-dashboard.yaml
