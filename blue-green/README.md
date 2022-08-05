@@ -23,6 +23,7 @@ Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a l
 ```bash
 # We can left ready the service sending the traffic only for the first version (blue) by patching
 # the service to send traffic to all pods with label version=v1.0.0
+kubectl get svc pulpocon-app -o yaml
 kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}}'
 kubectl get svc pulpocon-app -o yaml
 
@@ -66,6 +67,10 @@ kubectl delete deploy pulpocon-app-v1
 
 ```bash
 kubectl delete deploy -l app=pulpocon-app
+
+# Patch the service and left for the rest deployment strategies with only selector "app: pulpocon-app"
+kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/spec/selector/version"}]'
+kubectl get svc pulpocon-app -o yaml
 ```
 
 **Se puede aplicacr el despliegue blue/gree para un único servicio o para varios servicios usando un Ingress controller:**

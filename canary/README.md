@@ -27,10 +27,6 @@ y no errores inesperados
 
 ```bash
 
-# Deploy the service with only selector "app: pulpocon-app"
-kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/spec/selector/version"}]'
-kubectl get svc pulpocon-app -o yaml
-
 # Deploy the first application
 kubectl apply -f app-v1.yaml
 
@@ -51,6 +47,8 @@ while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
 
 kubectl scale --replicas=2 deploy pulpocon-app-v2
 kubectl scale --replicas=8 deploy pulpocon-app-v1
+
+...
 
 kubectl scale --replicas=9 deploy pulpocon-app-v2
 kubectl scale --replicas=1 deploy pulpocon-app-v1
