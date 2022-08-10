@@ -65,6 +65,7 @@ kubectl delete deploy pulpocon-app-v1
 
 ```bash
 kubectl delete deploy -l app=pulpocon-app
+kubectl delete all -l app=pulpocon-app
 ```
 
 **Se puede implementar de forma nativa ajustando el número de réplicas o podemos usar un Nginx como Controlador de Ingress de entrada y se puede configurar la división del trafico más fino a través de anotaciones de Ingress (nginx.ingress.kubernetes.io/canary: "true" and nginx.ingress.kubernetes.io/canary-weight: "10"**

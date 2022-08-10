@@ -42,7 +42,7 @@ En este fichero tenemos 3 informaciones:
 
 Se pueden seguir trabajando las diferentes estrategias de **un modo de configuración gráfico** por medio del kubernetes-dashboard seleccionando cada usuario su namespace de trabajo ó bien de **un modo consola** por linea de comandos en la que se recomienda tener un entorno linux para facilitar la ejecución de los comandos del repo.
 
-- Modo gráfico con kubernetes-dashboard:
+- **Modo gráfico** con kubernetes-dashboard:
 
     - Entrar en url del kubernetes-dashboard con el token del usuario asignado:
         - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-user20 y meter el token <"token-k8s-pulpocon-user20"> de ese usuario descrito en fichero doc compartido de Usuarios PulpoCon para poder entrar.
@@ -56,7 +56,7 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
         - Una vez acabada cada estrategia eliminar el deployment creado al principio.
 
 
-- Modo consola por línea de comandos:
+- **Modo consola** por línea de comandos:
 
     - [Instalación kubectl](https://kubernetes.io/docs/tasks/tools/)
     - Utilizar el <"file-kube-config-pulpocon-user20">=kubeconfig-pulpocon-user20 que es el fichero del excell_compartido 

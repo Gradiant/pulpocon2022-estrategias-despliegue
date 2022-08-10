@@ -123,15 +123,193 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "bars",
+              "fillOpacity": 100,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 6,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "always",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
         "gridPos": {
-          "h": 3,
-          "w": 3,
+          "h": 12,
+          "w": 10,
           "x": 13,
           "y": 0
         },
+        "id": 6,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "sum(rate(http_requests_total{app=\"pulpocon-app\",kubernetes_namespace=\"$namespace\"}[5m])) by (version)",
+            "legendFormat": "{{version}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Requests Total",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "bars",
+              "fillOpacity": 100,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 13,
+          "x": 0,
+          "y": 12
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "code",
+            "expr": "sum(kube_pod_container_info{namespace=\"$namespace\"}) by (image_spec)",
+            "legendFormat": "{{image_spec}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Conatiner by version",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 2,
+          "x": 13,
+          "y": 12
+        },
         "id": 4,
         "options": {
-          "content": "<a href=\"http://kubernetes-dashboard.fbi.com/#/deployment?namespace=default\" target=\"_blank\">Kubernetes Dashboard</a> \n<br/>\n<a href=\"http://pulpocon-app.fbi.com/\" target=\"_blank\">Pulpocon-app Application Link</a>",
+          "content": "<a href=\"http://kubernetes-dashboard.fbi.com/#/deployment?namespace=default\" target=\"_blank\">Kubernetes Dashboard</a> \n<a href=\"http://pulpocon-app.fbi.com/\" target=\"_blank\">Pulpocon-app Application Link</a>",
           "mode": "markdown"
         },
         "pluginVersion": "9.0.5",
@@ -166,7 +344,7 @@
               "scaleDistribution": {
                 "type": "linear"
               },
-              "showPoints": "always",
+              "showPoints": "never",
               "spanNulls": false,
               "stacking": {
                 "group": "A",
@@ -194,9 +372,9 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 0,
+          "h": 12,
+          "w": 8,
+          "x": 15,
           "y": 12
         },
         "id": 10,
@@ -236,7 +414,6 @@
       "list": [
         {
           "current": {
-            "isNone": true,
             "selected": false,
             "text": "None",
             "value": ""
@@ -310,6 +487,6 @@
     "timezone": "",
     "title": "PulpoCon2022",
     "uid": "6CSAiFg4k",
-    "version": 2,
+    "version": 1,
     "weekStart": ""
   }
