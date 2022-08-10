@@ -27,6 +27,8 @@ Instalación en local para casa:
 
 ## Taller Estrategias de despliegue / Track Devops:
 
+La infraestructura ya está montada para el evento "PulpoCon" en un cluster de kubernetes (servicio EKS) que tenemos desplegado en AWS (Amazon Web Services)
+
 - [Usuarios PulpoCon](https://docs.google.com/spreadsheets/d/1qm4vZoIYYcHK4AwTuHPsjFciUwVgTlFK7ENTguKx0Tk/edit?usp=sharing)
 En este fichero tenemos 3 informaciones:
     - username: pulpocon-user20
@@ -46,7 +48,11 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
         - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-user20 y meter el token <"token-k8s-pulpocon-user20"> de ese usuario descrito en fichero doc compartido de Usuarios PulpoCon para poder entrar.
     - Crear el servicio mediante el "botón +" del kubernetes-dashboard.[service](service.yaml)
     - Seguimos las instrucciones de cada estrategia ( [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/) )
-        - Crear el deployment de la v1 de las diferentes estrategias mediante el "botón +" del kubernetes-dashboard. Se necesita hacer un diff entre el v1 y el v2 de los diferentes deployments y editar el deployment en la sección deployments en los tres puntos del deployment y editar y poner los cambios observados y guardar.
+        - Crear el deployment de la v1 (app-v1.yaml) de las diferentes estrategias mediante el "botón +" del kubernetes-dashboard.
+        - Verificar que la aplicación **"pulpocon-app"** es desplegada
+        - Observar el despliegues de los pods en el mismo **"kubernetes-dashboard"** y **"grafana"**
+        - Se necesita hacer un diff entre el v1 y el v2 de los diferentes deployments (diff app-v1.yaml app-v2.yaml) y editar el deployment en la sección deployments en los tres puntos del deployment y editar y poner los cambios observados y guardar.
+        - Observar los cambios en la aplicación **"pulpocon-app"**, **"kubernetes-dashboard"** y **"grafana"**
         - Una vez acabada cada estrategia eliminar el deployment creado al principio.
 
 
