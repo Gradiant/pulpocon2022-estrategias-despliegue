@@ -28,6 +28,10 @@ spec:
       thresholdRange:
         min: 99
       interval: 1m
+    # - name: request-duration
+    #   thresholdRange:
+    #     max: 250
+    #   interval: 30s
     webhooks:
       - name: acceptance-test
         type: pre-rollout

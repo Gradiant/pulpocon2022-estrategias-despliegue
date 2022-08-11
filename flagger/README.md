@@ -24,9 +24,9 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 #Install ingress Controller again with helm and metrics for prometheus to check the deployments
 kubectl delete -f ../local-kind/resources/ingress-nginx.yaml
 
-kubectl create ns ingress-nginx
 helm install nginx-ingress ingress-nginx/ingress-nginx \
  --namespace ingress-nginx \
+ --create-namespace \
  --set controller.metrics.enabled=true \
  --set controller.podAnnotations."prometheus\.io/scrape"=true \
  --set controller.podAnnotations."prometheus\.io/port"=10254 \
@@ -41,43 +41,55 @@ helm install flagger flagger/flagger \
 --set meshProvider=nginx
 
 # Deploy Applicacion podinfo
-kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
-kubectl get pods
+kubectl create ns test
+# kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
+
+kubectl apply -f deployment.yaml
+kubectl apply -f hpa.yaml
+
+kubectl get pods,rs,deploy,horizontalpodautoscaler -n test
 # Ingress with url "podinfo.fbi.com" for podinfo
 kubectl apply -f podinfo-ingress.yaml
 # Deploy Flagger’s load tester, which allows canary resources to test releases by sending HTTP requests
-helm install flagger-loadtester flagger/loadtester
+helm install flagger-loadtester flagger/loadtester -n test
 # Define Canary Resource
 kubectl apply -f podinfo-canary.yaml
 
 #Get resources deployed
-kubectl get pods
-kubectl get canaries
-kubectl get services
-kubectl describe canary podinfo
+kubectl get pods,canaries,svc,ingress -n test
+kubectl describe canary podinfo -n test
 
 # Test if the deployment was successful
 curl podinfo.fbi.com
+curl -k https://podinfo-user20.pulpocon.gradiant.org
+
+# Check by listing the events associated with the podinfo canary
+# left in one window to check the evolution
+while true; do  \
+  kubectl describe canary/podinfo -n test; \
+  echo "";  \
+  sleep 0.5; \
+done
 
 # Then deploy A Canary Release, version 2 of the application
-kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3
-# Check by listing the events associated with the podinfo canary
-kubectl describe canary/podinfo
+kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3 -n test
 
-# Test the second deployment progress
+# Test the second deployment progress 
+# left in other window to test app 
+# and check the progress deploying until Succeeded or Failed 
 while true; do  \
-  kubectl get canaries; \
+  kubectl get canaries -n test; \
   curl http://podinfo.fbi.com/;  \
   echo "";  \
   sleep 0.5; \
 done
 
 # Check by listing the events associated with the podinfo canary
-kubectl describe canary/podinfo
+kubectl describe canary/podinfo -n test
 
-kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:3.1.1
+kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:3.1.1 -n test
 while true; do   \   
-  kubectl get canaries; \    
+  kubectl get canaries -n test; \    
   curl http://podinfo.fbi.com/; \
   curl http://podinfo.fbi.com/status/500; \  
   echo "";  \
@@ -85,18 +97,21 @@ while true; do   \
 done
 
 # Check by listing the events associated with the podinfo canary
-kubectl describe canary/podinfo
+kubectl describe canary/podinfo -n test
 
 # Dejamos la versión anterior para que quede como está actualmente
-kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3
+kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3 -n test
 ```
 <!---
+#kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
+
 watch curl http://podinfo.fbi.com//status/500
 
 # Check by listing the events associated with the podinfo canary
 kubectl describe canary/podinfo
 
     flagger-loadtester
+    https://github.com/fluxcd/flagger/pkgs/container/flagger-loadtester
     
     # alerting (optional)
     alerts:
@@ -113,8 +128,9 @@ kubectl describe canary/podinfo
 ```bash
 kubectl delete -f podinfo-ingress.yaml
 kubectl delete -f podinfo-canary.yaml
-kubectl delete deploy -l app=podinfo
-kubectl delete https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
-helm uninstall flagger-loadtester
+kubectl delete all -l app=podinfo -n test
+kubectl delete -f hpa.yaml
+helm uninstall flagger-loadtester -n test
 helm uninstall flagger
+kubectl delete ns test
 ```
