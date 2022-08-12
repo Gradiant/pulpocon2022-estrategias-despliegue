@@ -16,6 +16,7 @@ se debe elegir cuidadosamente la estrategia correcta para hacer que su infraestr
 ![deployment strategy decision diagram](decision-diagram.png)
 
 -->
+![grafico de estrategias de despliegue](estrategias-despliegue-graph.png)
 
 ## Getting started
 
