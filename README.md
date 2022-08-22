@@ -1,7 +1,7 @@
 ## Pulpocon2022 Estrategias de Despliegue
 ==========================================
 
-> En kuberentes hay pocas formas diferentes de lanzar una aplicación, 
+> En kuberentes hay varias maneras de desplegar una aplicación, 
 se debe elegir cuidadosamente la estrategia correcta para hacer que su infraestructura sea resilente.
 
 - [recreate](recreate/): termina la version anterior y se lanza la nueva
