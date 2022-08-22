@@ -5,18 +5,18 @@ Blue/green deployment para un único servicio
 
 ![kubernetes blue-green deployment](grafana-blue-green.png)
 
-La estrategia blue/gree se dierencia de la de rollingUpdate, ya que la versión B (verde) se implementa junato con la versión A (azul) con la misma cantidad de instancias. 
-Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a la B a nivel de balanceador de carga.
+La estrategia blue/green se diferencia de la de rollingUpdate, ya que la versión B (verde) se implementa junto con la versión A (azul) con la misma cantidad de instancias. 
+Después de probar que la nueva versión es correcta, el tráfico se cambia de la A a la B a nivel de balanceador de carga.
 
-> En este ejemplo, desplegamos una nueva version de un único servicio usando la estrategia de blue/green.
+> En este ejemplo, desplegamos una nueva versión de un único servicio usando la estrategia de blue/green.
 
 ## Pasos a seguir
 
-1. version 1 está sirviendo tráfico
-1. desplegamos version 2
-1. esperamos hasta que version 2 esté disponible
-1. cambiamos el tráfico entrante de la versión 1 a la versión 2
-1. paramos version 1
+1. version 1 está sirviendo tráfico.
+1. desplegamos version 2.
+1. esperamos hasta que version 2 esté disponible.
+1. cambiamos el tráfico entrante de la versión 1 a la versión 2.
+1. paramos version 1.
 
 ## In practice
 
@@ -75,7 +75,7 @@ kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/s
 kubectl get svc pulpocon-app -o yaml
 ```
 
-**Se puede aplicacr el despliegue blue/gree para un único servicio o para varios servicios usando un Ingress controller:**
+**Se puede aplicar el despliegue blue/green para un único servicio o para varios servicios usando un Ingress controller:**
 
 **You can apply the blue/green deployment technique for a single service or
 multiple services using an Ingress controller:**
