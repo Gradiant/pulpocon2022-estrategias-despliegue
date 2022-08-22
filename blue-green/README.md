@@ -5,7 +5,7 @@ Blue/green deployment para un único servicio
 
 ![kubernetes blue-green deployment](grafana-blue-green.png)
 
-La estartegia blue/gree se dierencia de la de rollingUpdate, ya que la versión B (verde) se implementa junato con la versión A (azul) con la misma cantidad de instancias. 
+La estrategia blue/gree se dierencia de la de rollingUpdate, ya que la versión B (verde) se implementa junato con la versión A (azul) con la misma cantidad de instancias. 
 Despues de probar que la nueva versión es ok, el tráfico se cambia de la A a la B a nivel de balanceador de carga.
 
 > En este ejemplo, desplegamos una nueva version de un único servicio usando la estrategia de blue/green.
