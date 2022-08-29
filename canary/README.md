@@ -1,12 +1,11 @@
 Canary deployment con funcionalidades de k8s nativas
 =================
 
-> Version B es deplegada a un subconjunto de usuarios, entonces procedemos al despliegue completo.
+> La version B se depliega a un subconjunto de usuarios, y posteriormente se procede al despliegue completo.
 
 ![kubernetes canary deployment](grafana-canary.png)
 
-Un despliegue canary consiste en cambiar gradualmente el tráfico 
-de la version A a la versión B. 
+Un despliegue canary consiste en cambiar gradualmente el tráfico de la version A a la versión B. 
 Normalmente el tráfico se divide en función del peso, ej. 90% de las peticiones van a la versión A y 10% a la B.
 
 Esta técnica se usa principalmente cuando faltan pruebas o no son fiables o hay poca confianza en la estabilidad de la nueva versión en la plataforma.
@@ -16,9 +15,8 @@ Para nuestro caso usamos configuración y reparo de réplicas.
 ## Pasos a seguir
 
 1. 10 replicas de la version 1 sirven tráfico
-1. Desplegamos 1 replica de version 2 ( 10% del tráfico)
-1. Esperamos hasta que la version 2 es estable 
-y no errores inesperados
+1. Desplegamos 1 replica de version 2 (10% del tráfico)
+1. Esperamos hasta que la version 2 sea estable y no tenga errores inesperados
 1. Escalamos la version 2 a 10 replicas
 1. Esperamos que las instancias estén listas
 1. Paramos la version 1
@@ -26,7 +24,6 @@ y no errores inesperados
 ## En práctica
 
 ```bash
-
 # Deploy the first application
 kubectl apply -f app-v1.yaml
 
@@ -70,7 +67,7 @@ kubectl delete all -l app=pulpocon-app
 
 **Se puede implementar de forma nativa ajustando el número de réplicas o podemos usar un Nginx como Controlador de Ingress de entrada y se puede configurar la división del trafico más fino a través de anotaciones de Ingress (nginx.ingress.kubernetes.io/canary: "true" and nginx.ingress.kubernetes.io/canary-weight: "10"**
 
-#### Bibliography
+## Bibliography
 
 - [nginx-ingress] (https://github.com/ContainerSolutions/k8s-deployment-strategies/tree/master/canary/nginx-ingress)
 
