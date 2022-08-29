@@ -31,7 +31,7 @@ kubectl wait --namespace ingress-nginx \
 
 ## Instalación de Kubernetes-dashboard
 
- :warning: Se han modificado la instalación de kubernetes-dashboard para permitir **"saltar"** la autorización y trabajar como **administrador**. Por favor, cuidado de no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
+ :warning: Se ha modificado la instalación de kubernetes-dashboard para permitir **"saltar"** la autorización y trabajar como **administrador**. Por favor, cuidado de no utilizar esta instalación en clusters de kubernetes que no sean efímeros.
 
 ```
 kubectl apply -f resources/kubernetes-dashboard.yaml
@@ -77,7 +77,7 @@ kubectl create configmap -n monitoring grafana-dashboard --from-file=resources/p
 kubectl label configmap -n monitoring grafana-dashboard grafana_dashboard=1
 ```
 
-Accedemos a grafana con user "admin" password "prom-operator" en http://grafana.fbi.com
+Accedemos a grafana con user "admin" y password "prom-operator" en http://grafana.fbi.com
 
 ## Configuración del ingress de acceso de nuestra aplicación pulpocon-app
 
