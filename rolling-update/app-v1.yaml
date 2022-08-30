@@ -7,6 +7,25 @@ metadata:
     app: pulpocon-app
 spec:
   replicas: 10
+
+  # Here we define the rolling update strategy
+  # - maxSurge defines how many pods we can add at a time
+  # - maxUnavailable defines how many pods can be unavailable
+  #   during the rolling update
+  #
+  # Setting maxUnavailable to 0 would make sure we have the appropriate
+  # capacity during the rolling update.
+  # We could also use percentage based values instead of integer.
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 1
+  #     maxUnavailable: 0
+  
+  # The selector field tells the deployment which pods to update with
+  # the new version. This field is optional, but if you have labels
+  # uniquely defined for the pod, in this case the "version" label,
+  # its necessary to redefine the matchLabels and eliminate the version field
   selector:
     matchLabels:
       app: pulpocon-app
@@ -37,5 +56,8 @@ spec:
           httpGet:
             path: /ready
             port: probe
-          periodSeconds: 5
 
+          # Intial delay is set to a high value to have a better
+          # visibility of the ramped deployment
+          initialDelaySeconds: 15
+          periodSeconds: 5
