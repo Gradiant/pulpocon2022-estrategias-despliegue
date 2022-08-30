@@ -108,9 +108,9 @@
               "uid": "prometheus"
             },
             "editorMode": "code",
-            "expr": "sum(kube_pod_container_info{cluster=\"$cluster\", namespace=\"$namespace\"} and on(uid) kube_pod_status_ready{cluster=\"$cluster\", namespace=\"$namespace\",condition=\"true\"} == 1) by (image_spec)",
+            "expr": "sum(kube_pod_container_info{cluster=\"$cluster\", namespace=\"$namespace\"} and on(uid) kube_pod_status_ready{cluster=\"$cluster\", namespace=\"$namespace\",condition=\"true\"} == 1) by (image)",
             "interval": "5s",
-            "legendFormat": "{{image_spec}}",
+            "legendFormat": "{{image}}",
             "range": true,
             "refId": "A"
           }
@@ -218,7 +218,7 @@
               "uid": "prometheus"
             },
             "editorMode": "code",
-            "expr": "sum(irate(http_requests_total{app=\"pulpocon-app\",kubernetes_namespace=\"$namespace\"}[5m])) by (version)",
+            "expr": "sum(irate(http_requests_total{app=\"pulpocon-app\",kubernetes_namespace=\"$namespace\"}[40s])) by (version)",
             "legendFormat": "{{version}}",
             "range": true,
             "refId": "A"

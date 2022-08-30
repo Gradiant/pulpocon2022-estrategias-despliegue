@@ -10,7 +10,7 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 -->
 ## Pasos a seguir
 
-1. re-instalamos el ingress controller para que le envíe métricas al prometheus
+<!-- 1. re-instalamos el ingress controller para que le envíe métricas al prometheus -->
 1. instalamos flagger
 1. desplegar aplicacion podinfo 6.0.1, flagger loadtester y el recurso canary 
 1. cambiamos la versión de la aplicacion podinfo 6.0.3, mandamos tráfico para verificar ok y versión cambia ok 
@@ -18,6 +18,8 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 
 
 ## En la práctica
+
+<!-- 
 
 ```bash
 #Install ingress Controller again with helm and metrics for prometheus to check the deployments
@@ -32,6 +34,8 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
  --set controller.podAnnotations."prometheus\.io/port"=10254 \
  --version 4.0.6 \
  -f nginx_ingress_values.yaml
+
+-->
 
 # Install Flagger
 helm repo add flagger https://flagger.app
@@ -102,6 +106,7 @@ kubectl describe canary/podinfo -n test
 kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3 -n test
 ```
 <!---
+
 #kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
 
 watch curl http://podinfo.fbi.com//status/500
@@ -118,6 +123,7 @@ kubectl describe canary/podinfo
         severity: warn
         providerRef:
           name: qa-discord
+          
 -->
 
 ### Cleanup

@@ -1,0 +1,15 @@
+controller:
+  config:
+    proxy-buffer-size: 20k 
+  ingressClassResource:
+    default: true
+  watchIngressWithoutClass: true
+  metrics:
+    enabled: true
+  podAnnotations:
+    prometheus.io/scrape: true
+    prometheus.io/port: 10254
+  hostPort:
+    enabled: true
+    http: 80
+    https: 443

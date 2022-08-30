@@ -46,9 +46,6 @@ spec:
           containerPort: 8080
         - name: probe
           containerPort: 8086
-        env:
-        - name: VERSION
-          value: v2.0.0
         livenessProbe:
           httpGet:
             path: /live

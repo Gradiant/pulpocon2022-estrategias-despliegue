@@ -17,9 +17,28 @@ kind create cluster --name pulpocon --config=kind-cluster.yaml
 
 ## Instalación de Ingress Controller
 
+Añadimos el repo de ingress-nginx a helm:
+
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+```
+
+Instalamos el helm chart:
+
+```
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+ --namespace ingress-nginx \
+ --create-namespace \
+ --version 4.2.3 \
+ -f resources/nginx-ingress-values.yaml
+```
+
+<!--
 ```
 kubectl apply -f resources/ingress-nginx.yaml
 ```
+-->
 
 Espera a que el ingress controller esté listo:
 ```
