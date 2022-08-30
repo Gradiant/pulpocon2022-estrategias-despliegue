@@ -1,7 +1,7 @@
 Blue/green deployment para un único servicio
 =====================
 
-> Version B se despliega con la version A, entonces el tráfico de la version A se cambia a la versión B. Se conoce también como red/black deployment.
+> La version B se despliega con la version A, entonces el tráfico de la version A se cambia a la versión B. Se conoce también como red/black deployment.
 
 ![kubernetes blue-green deployment](grafana-blue-green.png)
 
@@ -18,7 +18,7 @@ Después de probar que la nueva versión es correcta, el tráfico se cambia de l
 1. cambiamos el tráfico entrante de la versión 1 a la versión 2.
 1. paramos version 1.
 
-## In practice
+## En la práctica
 
 ```bash
 # We can left ready the service sending the traffic only for the first version (blue) by patching

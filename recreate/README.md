@@ -1,11 +1,11 @@
 Recreate despliegue
 ===================
 
-> Version A termina entonces la version B es deplegada.
+> La version A se termina y entonces se despliega la version B.
 
 ![kubernetes recreate deployment](grafana-recreate.png)
 
-La estrategia recreate es un dummy deployment que consiste en parar la versión A e implementar la versión B después de que se para y elimina la versión A. Esta técnica implica downtime del servicio que depende de las duraciones del shutdown (apagado) y del boot (arranque) de la aplicación. 
+La estrategia recreate es un _dummy deployment_ que consiste en parar la versión A e implementar la versión B una vez que se para y elimina la versión A. Esta técnica *implica downtime del servicio*, el cual depende de las duraciones del _shutdown_ (apagado) y del _boot_ (arranque) de la aplicación. 
 
 ## Pasos a seguir
 
