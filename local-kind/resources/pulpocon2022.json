@@ -218,7 +218,7 @@
               "uid": "prometheus"
             },
             "editorMode": "code",
-            "expr": "sum(irate(http_requests_total{app=\"pulpocon-app\",kubernetes_namespace=\"$namespace\"}[40s])) by (version)",
+            "expr": "sum(irate(http_requests_total{app=\"pulpocon-app\",kubernetes_namespace=\"$namespace\"}[2m])) by (version)",
             "legendFormat": "{{version}}",
             "range": true,
             "refId": "A"
