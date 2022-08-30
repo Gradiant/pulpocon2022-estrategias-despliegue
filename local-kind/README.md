@@ -109,6 +109,20 @@ kubectl apply -f resources/ingress-app.yaml
  :warning: **Una vez desplegados los deployments de las sucesivas estrategias tendremos el acceso a través de: [http://pulpocon-app.fbi.com](http://pulpocon-app.fbi.com)**
 
 
+# Despliegue del servicio una vez para todas las estrategias de despliegue
+
+Instalamos el servicio utilizado de nuestra aplicación para la práctica de las estrategias de despliegue
+
+```
+kubectl apply -f ../service.yaml
+```
+
+verificamos el formato de nuestro servicio
+
+```
+kubectl get svc pulpocon-app -o yaml
+```
+
 ## Cleanup del cluster local
 
 ```
