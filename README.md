@@ -45,7 +45,7 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
 
     - Entrar en la url del kubernetes-dashboard con el token del usuario asignado:
         - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-user20 y meter el token <"token-k8s-pulpocon-user20"> de ese usuario descrito en fichero doc compartido de Usuarios PulpoCon para poder entrar.
-    - Crear el servicio mediante el "botón +" del kubernetes-dashboard.[service](service.yaml)
+    - Crear el servicio de la app mediante el "botón +" del kubernetes-dashboard con el siguiente contenido: [service.yaml](service.yaml)
     - Seguimos las instrucciones de cada estrategia ( [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/) )
         - Crear el deployment de la v1 (app-v1.yaml) de las diferentes estrategias mediante el "botón +" del kubernetes-dashboard.
         - Verificar que la aplicación **"pulpocon-app"** es desplegada
@@ -62,7 +62,11 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
     ```bash
     export KUBECONFIG=kubeconfig-pulpocon-user20
     ```
-    Una vez configurado el kubeconfig, seguir las instrucciones de cada estrategia con el comando kubectl, en la descripción de cada estrategia [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/)
+    - Una vez configurado el kubeconfig, instalamos el servicio de la app mediante:
+    ```
+    kubectl apply -f service.yaml
+    ```
+    - Seguimos las instrucciones de cada estrategia: con el comando kubectl, en la descripción de cada estrategia [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/)
 
 ### Flagger con nginx ingress controller - despliegue progresivo automático
 
