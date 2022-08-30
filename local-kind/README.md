@@ -2,7 +2,9 @@
 
 En caso de no tener acceso al cluster EKS del taller, aquí se muestran unas instrucciones para recrear el entorno en un PC a través de kind (kubernetes in docker).
 
-## Instalación de Kind y Helm
+## Instalación de Docker, Kind y Helm
+
+https://docs.docker.com/get-docker/
 
 https://kind.sigs.k8s.io/docs/user/quick-start#installation
 
