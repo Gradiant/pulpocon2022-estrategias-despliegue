@@ -14,7 +14,7 @@ La estrategia recreate es un _dummy deployment_ que consiste en parar la versió
 1. desplegar version 2
 1. esperar hasta que todas las réplicas estén listas
 
-## En línea de comandos
+### En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -39,7 +39,7 @@ kubectl delete deploy -l app=pulpocon-app
 
 ```
 
-## En Modo Gráfico
+### En Modo Gráfico
 
 Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
 

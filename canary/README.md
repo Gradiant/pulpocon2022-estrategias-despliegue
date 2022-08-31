@@ -21,7 +21,7 @@ Para nuestro caso usamos configuración y reparo de réplicas.
 1. Esperamos que las instancias estén listas
 1. Paramos la version 1
 
-## En línea de comandos
+### En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -61,7 +61,7 @@ kubectl delete deploy pulpocon-app-v1
 kubectl delete deploy -l app=pulpocon-app
 
 ```
-## En Modo Gráfico
+### En Modo Gráfico
 
 Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
 

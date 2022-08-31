@@ -23,7 +23,7 @@ para aumentar el tiempo de despliegue:
 1. desplegar version 2
 1. esperar hasta que todas las réplicas sean reemplazadas con version 2
 
-## En línea de comandos
+### En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -58,7 +58,7 @@ kubectl rollout resume deploy pulpocon-app
 kubectl delete deploy -l app=pulpocon-app
 ```
 
-## En Modo Gráfico
+### En Modo Gráfico
 
 Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
 

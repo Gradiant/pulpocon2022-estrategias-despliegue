@@ -18,7 +18,7 @@ Después de probar que la nueva versión es correcta, el tráfico se cambia de l
 1. cambiamos el tráfico entrante de la versión 1 a la versión 2.
 1. paramos version 1.
 
-## En línea de comandos
+### En línea de comandos
 
 ```bash
 # We can left ready the service sending the traffic only for the first version (blue) by patching
@@ -73,7 +73,7 @@ kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/s
 kubectl get svc pulpocon-app -o yaml
 ```
 
-## En Modo Gráfico
+### En Modo Gráfico
 
 Primero editaremos el servicio `pulpocon-app` para que envíe el tráfico solo a la primera version que desplegaremos (blue).
 
@@ -107,7 +107,10 @@ Si consideramos que la version 2 funciona correctamente podemos proceder a borra
 
 ![borrar](../borrar.png)
 
-Borra el despliegue blue y green antes de pasar a la siguiente estrategia.
+Antes de pasar a la siguiente estrategia debemos dejar el servicio pulpocon-app como estaba. 
+Para ello editamos el servicio y eliminamos el campo `spec.selector.version`.
+
+Borramos además los despliegues realizados:
 
 ![borrar](../borrar.png)
 
