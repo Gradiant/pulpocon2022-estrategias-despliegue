@@ -78,14 +78,18 @@ Para ello crea un nuevo recurso a partir del fichero [app-v2.yaml](app-v2.yaml).
 
 Observa la coexistencia de ambas versiones.
 
-Edita el Deployment pulpocon-app-v1 para escalar su número de instancias a 9.
+Edita los Deployment `pulpocon-app-v1` y `pulpocon-app-v1` para escalar su número de instancias:
 ![editar](../editar.png)
 
-Para ello cambia los siguientes campos:
+1- cambia los siguientes campos `pulpocon-app-v1`:
 
  - spec.replicas: 9
 
-En la estrategia canary se irían incrementando las replicas de `pulpocon-app-v2` y disminuyendo las de `pulpocon-app-v1`.
+2- cambia los siguientes campos `pulpocon-app-v2`:
+
+ - spec.replicas: 1
+
+En la estrategia canary iriamos progresivamente incrementando las replicas de `pulpocon-app-v2` y disminuyendo las de `pulpocon-app-v1` repitiendo el paso anterior.
 
 Borra el despliegue antes de pasar a la siguiente estrategia.
 
