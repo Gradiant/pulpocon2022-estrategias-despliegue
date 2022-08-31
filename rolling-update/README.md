@@ -66,6 +66,9 @@ Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
 
 Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
 
+
+Accede a la aplicación en la url https://pulpocon-userX.pulpocon.gradiant.org (indica tu usuario concreto) y observa que instancia y versión te contesta.
+
 Edita el despliegue para actualizar su versión y cambiar su estrategia de despliegue.
 
 ![editar](../editar.png)
