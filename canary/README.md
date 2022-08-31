@@ -78,7 +78,7 @@ Para ello crea un nuevo recurso a partir del fichero [app-v2.yaml](app-v2.yaml).
 
 Observa la coexistencia de ambas versiones.
 
-Edita los Deployment `pulpocon-app-v1` y `pulpocon-app-v1` para escalar su número de instancias:
+Edita los Deployment `pulpocon-app-v1` y `pulpocon-app-v2` para escalar su número de instancias:
 ![editar](../editar.png)
 
 1- cambia los siguientes campos `pulpocon-app-v1`:
