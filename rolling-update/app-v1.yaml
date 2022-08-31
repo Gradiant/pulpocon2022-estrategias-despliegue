@@ -16,12 +16,11 @@ spec:
   # Setting maxUnavailable to 0 would make sure we have the appropriate
   # capacity during the rolling update.
   # We could also use percentage based values instead of integer.
-  # strategy:
-  #   type: RollingUpdate
-  #   rollingUpdate:
-  #     maxSurge: 1
-  #     maxUnavailable: 0
-  
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   # The selector field tells the deployment which pods to update with
   # the new version. This field is optional, but if you have labels
   # uniquely defined for the pod, in this case the "version" label,
