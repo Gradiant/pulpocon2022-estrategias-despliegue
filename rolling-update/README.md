@@ -23,7 +23,7 @@ para aumentar el tiempo de despliegue:
 1. desplegar version 2
 1. esperar hasta que todas las réplicas sean reemplazadas con version 2
 
-## En la práctica
+## En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -53,10 +53,42 @@ kubectl rollout pause deploy pulpocon-app
 
 # Then if you are satisfy with the result, rollout
 kubectl rollout resume deploy pulpocon-app
-```
 
-### Cleanup
-
-```bash
+# Cleanup
 kubectl delete deploy -l app=pulpocon-app
 ```
+
+## En Modo Gráfico
+
+Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
+
+![crear_recurso](../crear_recurso.png)
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Edita el despliegue para actualizar su versión y cambiar su estrategia de despliegue.
+
+![editar](../editar.png)
+
+Para ello cambia los siguientes campos:
+
+ - spec.template.metadata.labels.version: v2.0.0
+ - spec.template.spec.containers[0].image: pazgzlez/k8s-deployment-strategies:v2.0.0
+
+Y descomenta la sección spec.strategy:
+
+```
+...
+   strategy:
+     type: RollingUpdate
+     rollingUpdate:
+       maxSurge: 1
+       maxUnavailable: 0
+...
+```
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Borra el despliegue antes de pasar a la siguiente estrategia.
+
+![borrar](../borrar.png)
