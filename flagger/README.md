@@ -63,7 +63,6 @@ kubectl describe canary podinfo -n test
 
 # Test if the deployment was successful
 curl podinfo.fbi.com
-curl -k https://podinfo-user20.pulpocon.gradiant.org
 
 # Check by listing the events associated with the podinfo canary
 # left in one window to check the evolution
