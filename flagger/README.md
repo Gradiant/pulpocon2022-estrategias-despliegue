@@ -19,9 +19,7 @@ La estrategia recreate es un dummy deployment que consiste en parar la versión 
 
 ## En la práctica
 
-<!-- 
-
-```bash
+<!--
 #Install ingress Controller again with helm and metrics for prometheus to check the deployments
 kubectl delete -f ../local-kind/resources/ingress-nginx.yaml
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -37,6 +35,7 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
 
 -->
 
+```bash
 # Install Flagger
 helm repo add flagger https://flagger.app
 helm repo update
@@ -105,8 +104,8 @@ kubectl describe canary/podinfo -n test
 # Dejamos la versión anterior para que quede como está actualmente
 kubectl set image deployment/podinfo podinfod=stefanprodan/podinfo:6.0.3 -n test
 ```
-<!---
 
+<!---
 #kubectl apply -k https://github.com/fluxcd/flagger//kustomize/podinfo?ref=main
 
 watch curl http://podinfo.fbi.com//status/500
@@ -122,8 +121,7 @@ kubectl describe canary/podinfo
       - name: "qa team Discord"
         severity: warn
         providerRef:
-          name: qa-discord
-          
+          name: qa-discord     
 -->
 
 ### Cleanup
