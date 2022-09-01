@@ -78,7 +78,7 @@ Para ello cambia los siguientes campos:
  - spec.template.metadata.labels.version: v2.0.0
  - spec.template.spec.containers[0].image: pazgzlez/k8s-deployment-strategies:v2.0.0
 
-Y descomenta la sección spec.strategy:
+Y verifica la sección spec.strategy:
 
 ```
 ...
