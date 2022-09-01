@@ -18,7 +18,7 @@ Después de probar que la nueva versión es correcta, el tráfico se cambia de l
 1. cambiamos el tráfico entrante de la versión 1 a la versión 2.
 1. paramos version 1.
 
-## En la práctica
+### En línea de comandos
 
 ```bash
 # We can left ready the service sending the traffic only for the first version (blue) by patching
@@ -63,17 +63,57 @@ kubectl patch service pulpocon-app -p '{"spec":{"selector":{"version":"v1.0.0"}}
 # If everything is working as expected, you can then delete the v1.0.0
 # deployment
 kubectl delete deploy pulpocon-app-v1
-```
 
-### Cleanup
+# Cleanup
 
-```bash
 kubectl delete deploy -l app=pulpocon-app
 
 # Patch the service and left for the rest deployment strategies with only selector "app: pulpocon-app"
 kubectl patch service pulpocon-app --type=json -p='[{"op": "remove", "path": "/spec/selector/version"}]'
 kubectl get svc pulpocon-app -o yaml
 ```
+
+### En Modo Gráfico
+
+Primero editaremos el servicio `pulpocon-app` para que envíe el tráfico solo a la primera version que desplegaremos (blue).
+
+![editar_servicio](../edit_service.png)
+
+Añadimos el siguiente campo:
+
+- spec.selector.version: v1.0.0
+
+A continuación creamos un nuevo recurso a partir del fichero [app-v1-blue.yaml](app-v1-blue.yaml):
+
+![crear_recurso](../crear_recurso.png)
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Accede a la aplicación en la url https://pulpocon-userX.pulpocon.gradiant.org (indica tu usuario concreto) y observa que instancia y versión te contesta.
+
+A continuación, siguiendo la estrategia blue-green, desplegamos en paralelo la version 2. Para ello creamos un nuevo recurso a partir del fichero [app-v2-green.yaml](app-v2-green.yaml):
+
+Observa los recursos desplegados en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Comprueba que el servicio solo redirige las peticiones a la version 1 en la url de la aplicacion.
+
+Ahora movemos el tráfico de la versión 1 a la versión 2. Para ello editamos de nuevo el servicio y cambiamos el campo `spec.selector.version: v2.0.0`.
+
+Comprueba que el servicio solo redirige las peticiones a la version 2 en la url de la aplicacion.
+
+En caso de necesitar volver a la versión anterior podemos volver a editar el servicio.
+
+Si consideramos que la version 2 funciona correctamente podemos proceder a borrar la version 1.
+
+![borrar](../borrar.png)
+
+Antes de pasar a la siguiente estrategia debemos dejar el servicio pulpocon-app como estaba. 
+Para ello editamos el servicio y eliminamos el campo `spec.selector.version`.
+
+Borramos además los despliegues realizados:
+
+![borrar](../borrar.png)
+
 
 **Se puede aplicar el despliegue blue/green para un único servicio o para varios servicios usando un Ingress controller:**
 

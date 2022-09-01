@@ -21,7 +21,7 @@ Para nuestro caso usamos configuración y reparo de réplicas.
 1. Esperamos que las instancias estén listas
 1. Paramos la version 1
 
-## En práctica
+### En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -56,14 +56,44 @@ kubectl scale --replicas=1 deploy pulpocon-app-v1
 # Then, when all pods are running, you can safely delete the old deployment
 kubectl scale --replicas=10 deploy pulpocon-app-v2
 kubectl delete deploy pulpocon-app-v1
-```
 
-### Cleanup
-
-```bash
+# cleanup
 kubectl delete deploy -l app=pulpocon-app
+
 ```
-<!-- kubectl delete all -l app=pulpocon-app -->
+### En Modo Gráfico
+
+Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
+
+![crear_recurso](../crear_recurso.png)
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+
+Accede a la aplicación en la url https://pulpocon-userX.pulpocon.gradiant.org (indica tu usuario concreto) y observa que instancia y versión te contesta.
+
+Despliega en paralelo la version 2 mediante la estrategia canary.
+
+Para ello crea un nuevo recurso a partir del fichero [app-v2.yaml](app-v2.yaml).
+
+Observa la coexistencia de ambas versiones.
+
+Edita los Deployment `pulpocon-app-v1` y `pulpocon-app-v2` para escalar su número de instancias:
+![editar](../editar.png)
+
+1- cambia los siguientes campos `pulpocon-app-v1`:
+
+ - spec.replicas: 9
+
+2- cambia los siguientes campos `pulpocon-app-v2`:
+
+ - spec.replicas: 1
+
+En la estrategia canary iriamos progresivamente incrementando las replicas de `pulpocon-app-v2` y disminuyendo las de `pulpocon-app-v1` repitiendo el paso anterior.
+
+Borra el despliegue antes de pasar a la siguiente estrategia.
+
+![borrar](../borrar.png)
 
 **Se puede implementar de forma nativa ajustando el número de réplicas o podemos usar un Nginx como Controlador de Ingress de entrada y se puede configurar la división del trafico más fino a través de anotaciones de Ingress (nginx.ingress.kubernetes.io/canary: "true" and nginx.ingress.kubernetes.io/canary-weight: "10"**
 

@@ -14,7 +14,7 @@ La estrategia recreate es un _dummy deployment_ que consiste en parar la versió
 1. desplegar version 2
 1. esperar hasta que todas las réplicas estén listas
 
-## En la práctica
+### En línea de comandos
 
 ```bash
 # Deploy the first application
@@ -33,10 +33,34 @@ kubectl apply -f app-v2.yaml
 # Test the second deployment progress
 while sleep 0.1; do curl "pulpocon-app.fbi.com"; done
 while sleep 0.1; do curl -k "https://pulpocon-user20.pulpocon.gradiant.org"; done
-```
 
-### Cleanup
-
-```bash
+# Clean Up
 kubectl delete deploy -l app=pulpocon-app
+
 ```
+
+### En Modo Gráfico
+
+Crea un nuevo recurso a partir del fichero [app-v1.yaml](app-v1.yaml):
+
+![crear_recurso](../crear_recurso.png)
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Accede a la aplicación en la url https://pulpocon-userX.pulpocon.gradiant.org (indica tu usuario concreto) y observa que instancia y versión te contesta.
+
+Edita el despliegue para actualizar su versión.
+
+![editar](../editar.png)
+
+Para ello cambia los siguientes campos:
+
+ - spec.template.metadata.labels.version: v2.0.0
+ - spec.template.spec.containers[0].image: pazgzlez/k8s-deployment-strategies:v2.0.0
+
+Observa el estado del despliegue en el [kubernetes-dashboard](https://kubernetes-dashboard.pulpocon.gradiant.org) y en [grafana](https://grafana.pulpocon.gradiant.org).
+
+Borra el despliegue antes de pasar a la siguiente estrategia.
+
+![borrar](../borrar.png)
+

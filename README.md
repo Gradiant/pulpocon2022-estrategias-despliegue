@@ -29,6 +29,7 @@ Instalación en local para casa:
 La infraestructura ya está montada para el evento "PulpoCon" en un cluster de kubernetes (servicio EKS) que tenemos desplegado en AWS (Amazon Web Services)
 <!--
 - [Usuarios PulpoCon](https://docs.google.com/spreadsheets/d/1qm4vZoIYYcHK4AwTuHPsjFciUwVgTlFK7ENTguKx0Tk/edit?usp=sharing)
+
 En este fichero tenemos 3 informaciones:
     - username: pulpocon-user20
     - token: <"token-k8s-pulpocon-user20">
