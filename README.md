@@ -41,9 +41,9 @@ En este fichero tenemos 3 informaciones:
 En este directorio tenemos los diferentes ficheros <"kubeconfig-pulpocon-userX"> a utilizar cada usuario/pareja con el usuario asignado, descargarlo a vuestro equipo para ser utilizado como credenciales al kuberentes-dashboard o como kubeconfig en el kubectl ( con variable de entorno en ruta absoluta KUBECONFIG o moviendo ese fichero a ~/.kube/config )
 
 - Las urls de trabajo son las siguientes:
-    - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-userX donde X usuario asignado
-    - grafana: https://grafana.pulpocon.gradiant.org/d/6CSAiFg4k/pulpocon2022?orgId=1&var-cluster=&var-namespace=pulpocon-userX donde X usuario asignado y entrar con user/pass: admin/pulp0c0n
-    - pulpocon-app: https://pulpocon-userX.pulpocon.gradiant.org/ donde X es el usuario asignado
+    - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/ y seleccionar el namespace de tu usuario en el desplegable.
+    - grafana: https://grafana.pulpocon.gradiant.org/ y entrar con user/pass: admin/pulp0c0n  y seleccionar el namespace de tu usuario en el desplegable.
+    - pulpocon-app: https://pulpocon-userX.pulpocon.gradiant.org/ donde X es el usuario asignado.
 
 Se pueden seguir trabajando las diferentes estrategias de **un modo de configuración gráfico** por medio del kubernetes-dashboard seleccionando cada usuario su namespace de trabajo o bien de **un modo consola** por linea de comandos en la que se recomienda tener un entorno linux para facilitar la ejecución de los comandos del repo.
 
