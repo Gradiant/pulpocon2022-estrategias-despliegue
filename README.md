@@ -54,12 +54,7 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
         - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-userX donde X es el usuario asignado y meter el fichero kubeconfig <"kubeconfig-pulpocon-userX"> del usuario asignado para poder entrar.
     - Verificar el servicio de la app en el kubernetes-dashboard en la sección correspondiente con el siguiente contenido: [service.yaml](service.yaml)
     - Seguimos las instrucciones de cada estrategia ( [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/) )
-        - Crear el deployment de la v1 (app-v1.yaml) de las diferentes estrategias mediante el "botón +" del kubernetes-dashboard.
-        - Verificar que la aplicación **"pulpocon-app"** es desplegada con la url / ingress pulpocon-app del usuario correspondiente X 
-        - Observar los despliegues de los pods en el mismo **"kubernetes-dashboard"** y **"grafana"**
-        - Se necesita hacer un diff entre el v1 y el v2 de los diferentes deployments `(diff app-v1.yaml app-v2.yaml)` y editar el deployment en la sección deployments (en los tres puntos del deployment) y editar, poner los cambios observados y guardar.
-        - Observar los cambios en la aplicación **"pulpocon-app"**, **"kubernetes-dashboard"** y **"grafana"**
-        - Una vez acabada cada estrategia eliminar el deployment creado al principio.
+        - :warning: Una vez acabada cada estrategia eliminar el deployment creado al principio.
 
 
 - **Modo consola** por línea de comandos:
