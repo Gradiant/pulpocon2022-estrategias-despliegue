@@ -52,7 +52,7 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
 
     - Entrar en la url del kubernetes-dashboard con el token del usuario asignado:
         - kubernetes-dashboard: https://kubernetes-dashboard.pulpocon.gradiant.org/#/overview?namespace=pulpocon-userX donde X es el usuario asignado y meter el fichero kubeconfig <"kubeconfig-pulpocon-userX"> del usuario asignado para poder entrar.
-    - Verificar el servicio de la app en el kubernetes-dashboard en la sección correspondiente con el siguiente contenido: [service.yaml](service.yaml)
+    - Verificar que existe el servicio `pulpocon-app`.
     - Seguimos las instrucciones de cada estrategia ( [recreate](recreate/), [rollingUpdate](rolling-update/), [blue/green](blue-green/) y [canary](canary/) )
         - :warning: Una vez acabada cada estrategia eliminar el deployment creado al principio.
 
