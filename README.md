@@ -37,7 +37,8 @@ En este fichero tenemos 3 informaciones:
 -->
 - En el taller se le asignarán un número de usuario X a cada usuario/pareja
 
-- [Kubeconfig_PulpoCon](https://drive.google.com/drive/folders/1v-eMXMpb5lJ9sqt8fISqKAmH1ylj9x9S?usp=sharing)
+- [Carpeta Kubeconfigs_PulpoCon](https://drive.google.com/drive/folders/1v-eMXMpb5lJ9sqt8fISqKAmH1ylj9x9S?usp=sharing)
+
 En este directorio tenemos los diferentes ficheros <"kubeconfig-pulpocon-userX"> a utilizar cada usuario/pareja con el usuario asignado, descargarlo a vuestro equipo para ser utilizado como credenciales al kuberentes-dashboard o como kubeconfig en el kubectl ( con variable de entorno en ruta absoluta KUBECONFIG o moviendo ese fichero a ~/.kube/config )
 
 - Las urls de trabajo son las siguientes:
