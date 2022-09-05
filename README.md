@@ -26,15 +26,10 @@ Instalación en local para casa:
 
 ## Taller Estrategias de despliegue / Track Devops:
 
-La infraestructura ya está montada para el evento "PulpoCon" en un cluster de kubernetes (servicio EKS) que tenemos desplegado en AWS (Amazon Web Services)
-<!--
-- [Usuarios PulpoCon](https://docs.google.com/spreadsheets/d/1qm4vZoIYYcHK4AwTuHPsjFciUwVgTlFK7ENTguKx0Tk/edit?usp=sharing)
+Existe **una infraestructura cloud** previamente montada para el evento "PulpoCon" en un cluster de kubernetes (servicio EKS) que tenemos desplegado en AWS (Amazon Web Services)
 
-En este fichero tenemos 3 informaciones:
-    - username: pulpocon-user20
-    - token: <"token-k8s-pulpocon-user20">
-    - kubeconfig: <"file-kube-config-pulpocon-user20">
--->
+:warning: Al ser **una infraestructura cloud**, que solo se crea para este taller, es destruída a la finalización del taller para no incurrir en más gastos de los necesarios (pago por uso). Se puede realizar este taller en casa utilizando **una infraestructura local** siguiendo el "Getting started" en [instalación local para casa](local-kind/README.md), en este caso usaremos el kubeconfig local que se crea y configura por el kind y se utilizan las urls locales de la misma forma que haríamos en el cloud: [kubernetes-dashboard en local](http://kubernetes-dashboard.fbi.com/), [grafana en local](http://grafana.fbi.com/) y [pulpocon-app en local](http://pulpocon-app.fbi.com). En este caso local trabajamos ya por defecto en el namespace default con lo que no es necesario la selección de ningún namespace específico.
+
 - En el taller se le asignarán un número de usuario X a cada usuario/pareja
 
 - [Carpeta Kubeconfigs_PulpoCon](https://drive.google.com/drive/folders/1v-eMXMpb5lJ9sqt8fISqKAmH1ylj9x9S?usp=sharing)
@@ -60,7 +55,7 @@ Se pueden seguir trabajando las diferentes estrategias de **un modo de configura
 - **Modo consola** por línea de comandos:
 
     - [Instalación kubectl](https://kubernetes.io/docs/tasks/tools/)
-    - Utilizar el <"kubeconfig-pulpocon-userX"> que es el fichero del excell_compartido 
+    - Utilizar el <"kubeconfig-pulpocon-userX"> que es el fichero de la carpeta compartida 
     ```bash
     export KUBECONFIG=</ruta/absoulta/"kubeconfig-pulpocon-userX">
     ```
